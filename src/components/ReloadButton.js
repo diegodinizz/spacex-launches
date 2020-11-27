@@ -1,0 +1,37 @@
+import styled from 'styled-components'
+
+import refresh from '../assets/icon/refresh@3x.png'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: #215184;
+  border-radius: 150px 0px 0px 150px;
+  -webkit-border-radius: 150px 0px 0px 150px;
+  -moz-border-radius: 150px 0px 0px 150px;
+  height: 2.5rem;
+  width: 8rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`
+
+const Name = styled.div`
+  font-size: 0.7em;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  letter-spacing: 0.1px;
+`
+
+const Icon = styled.img`
+  width: 13px;
+  height: 13px;
+`
+
+export const ReloadButton = ({ children }) => (
+  <Container>
+    <Name>{children}</Name>
+    <Icon src={refresh} alt='refresh-icon' />
+  </Container>
+)
