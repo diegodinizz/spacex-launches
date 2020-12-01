@@ -5,7 +5,7 @@ import { Item } from './Item'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px;
+  margin: 0 40px 40px 40px;
   width: 50%;
   height: 700px;
   overflow: scroll;
