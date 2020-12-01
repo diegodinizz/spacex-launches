@@ -1,12 +1,13 @@
 import styled from 'styled-components'
+import moment from 'moment'
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  height: 60px;
+  width: 95%;
+  height: 70px;
   margin: 5px;
   padding: 10px;
   background-color: white;
@@ -19,12 +20,13 @@ const Container = styled.div`
 const FlightContainer = styled.div`
   display: flex;
   align-items: baseline;
-  width: 35%;
-  justify-content: space-between;
+  width: 80%;
+  justify-content: flex-start;
 `
 
 const FlightNumber = styled.span`
   font-size: 2.3em;
+  margin-right: 50px;
 `
 
 const MissionName = styled.span`
@@ -48,15 +50,24 @@ const RocketName = styled.span`
   font-weight: 700;
 `
 
-export const Item = () => (
-  <Container>
-    <FlightContainer>
-      <FlightNumber>#1</FlightNumber>
-      <MissionName>FalconSat</MissionName>
-    </FlightContainer>
-    <LaunchDateContainer>
-      <LaunchDate>24th Mar 2006</LaunchDate>
-      <RocketName>Falcon 1</RocketName>
-    </LaunchDateContainer>
-  </Container>
-)
+export const Item = ({ item }) => {
+  const { flight_number, mission_name, launch_date_utc, rocket } = item
+
+  function convertDate (date_utc) {
+    const date = moment.utc(date_utc).format('Do MMM YYYY')
+    return date
+  }
+
+  return (
+    <Container>
+      <FlightContainer>
+        <FlightNumber>#{flight_number}</FlightNumber>
+        <MissionName>{mission_name}</MissionName>
+      </FlightContainer>
+      <LaunchDateContainer>
+        <LaunchDate>{convertDate(launch_date_utc)}</LaunchDate>
+        <RocketName>{rocket.rocket_name}</RocketName>
+      </LaunchDateContainer>
+    </Container>
+  )
+}

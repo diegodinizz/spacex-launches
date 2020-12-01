@@ -28,8 +28,8 @@ const Icon = styled.img`
   height: 13px;
 `
 
-export const ReloadButton = ({ children }) => (
-  <Container>
+export const ReloadButton = ({ children, onClick }) => (
+  <Container onClick={onClick}>
     <Name>{children}</Name>
     <Icon src={refresh} alt='refresh-icon' />
   </Container>

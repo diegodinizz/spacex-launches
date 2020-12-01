@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import logo from '../assets/spacex-logo.png'
@@ -5,6 +6,7 @@ import rocket from '../assets/img/launch-home.png'
 
 import { ReloadButton } from '../components/ReloadButton'
 import { List } from '../components/List'
+import { Spinner } from '../components/Spinner'
 
 const Container = styled.div`
   display: flex;
@@ -50,18 +52,46 @@ const Rocket = styled.img`
   margin: 40px;
 `
 
-export const Home = () => (
-  <Container>
-    <Head>
-      <LogoContainer>
-        <Logo src={logo} alt='logo' />
-        <Title>Launches</Title>
-      </LogoContainer>
-      <ReloadButton>Reload Data</ReloadButton>
-    </Head>
-    <LaunchContainer>
-      <Rocket src={rocket} alt='rocket' />
-      <List />
-    </LaunchContainer>
-  </Container>
-)
+export const Home = () => {
+  const [launchesData, setLaunchesData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const url = 'https://api.spacexdata.com/v3/launches'
+
+    async function getData () {
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
+        setLaunchesData(data)
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+
+    getData()
+  }, [isLoading])
+
+  function renderLaunchesList (data) {
+    return <List launches={data} />
+  }
+
+  return (
+    <Container>
+      <Head>
+        <LogoContainer>
+          <Logo src={logo} alt='logo' />
+          <Title>Launches</Title>
+        </LogoContainer>
+        <ReloadButton onClick={() => setIsLoading(true)}>
+          Reload Data
+        </ReloadButton>
+      </Head>
+      <LaunchContainer>
+        <Rocket src={rocket} alt='rocket' />
+        {isLoading ? Spinner() : renderLaunchesList(launchesData)}
+      </LaunchContainer>
+    </Container>
+  )
+}

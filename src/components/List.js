@@ -7,10 +7,16 @@ const Container = styled.div`
   flex-direction: column;
   margin: 40px;
   width: 50%;
+  height: 700px;
+  overflow: scroll;
 `
 
-export const List = () => (
-  <Container>
-    <Item />
-  </Container>
-)
+export const List = ({ launches }) => {
+  return (
+    <Container>
+      {launches.map(item => (
+        <Item key={item.flight_number} item={item} />
+      ))}
+    </Container>
+  )
+}
