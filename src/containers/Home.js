@@ -4,11 +4,12 @@ import logo from '../assets/spacex-logo.png'
 import rocket from '../assets/img/launch-home.png'
 
 import { ReloadButton } from '../components/ReloadButton'
+import { List } from '../components/List'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 85%;
   margin: 20px auto;
   background-color: white;
   border-radius: 5px;
@@ -36,7 +37,6 @@ const Logo = styled.img`
 `
 
 const Title = styled.span`
-  /* font-family: 'Brandon Grotesque Light'; */
   text-transform: uppercase;
   font-size: 1.2em;
 `
@@ -61,6 +61,7 @@ export const Home = () => (
     </Head>
     <LaunchContainer>
       <Rocket src={rocket} alt='rocket' />
+      <List />
     </LaunchContainer>
   </Container>
 )

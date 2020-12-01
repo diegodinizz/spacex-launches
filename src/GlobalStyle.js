@@ -9,8 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   background-color: rgb(249, 249, 249);
   color: #545454;
-  font-family: 'Brandon Grotesque', Arial, Helvetica, sans-serif;
-  letter-spacing: 1px;
+  font-family: 'Josefin Sans', sans-serif;
 }
 `
 
@@ -21,6 +20,7 @@ body {
 //       url('assets/font/BrandonGrotesque-Bold.ttf') format('truetype');
 //   font-weight: bold;
 //   font-style: normal;
+//   font-display: fallback;
 // }
 
 // @font-face {
@@ -30,6 +30,7 @@ body {
 //       url('assets/font/BrandonGrotesque-Regular.ttf') format('truetype');
 //   font-weight: normal;
 //   font-style: normal;
+//   font-display: fallback;
 // }
 
 // @font-face {
@@ -39,6 +40,7 @@ body {
 //       url('assets/font/BrandonGrotesque-RegularItalic.ttf') format('truetype');
 //   font-weight: normal;
 //   font-style: italic;
+//   font-display: fallback;
 // }
 
 // @font-face {
@@ -48,6 +50,7 @@ body {
 //       url('assets/font/BrandonGrotesque-Black.ttf') format('truetype');
 //   font-weight: 900;
 //   font-style: normal;
+//   font-display: fallback;
 // }
 
 // @font-face {
@@ -57,6 +60,7 @@ body {
 //       url('assets/font/BrandonGrotesque-Medium.ttf') format('truetype');
 //   font-weight: 500;
 //   font-style: normal;
+//   font-display: fallback;
 // }
 
 // @font-face {

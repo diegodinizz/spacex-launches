@@ -9,19 +9,18 @@ const Container = styled.div`
   border-radius: 150px 0px 0px 150px;
   -webkit-border-radius: 150px 0px 0px 150px;
   -moz-border-radius: 150px 0px 0px 150px;
-  height: 2.5rem;
-  width: 8rem;
+  height: 2.7rem;
+  width: 8.5rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 `
 
 const Name = styled.div`
-  font-size: 0.7em;
-  font-weight: bold;
+  font-size: 0.8em;
+  font-weight: 700;
   color: white;
   padding: 10px;
-  letter-spacing: 0.1px;
 `
 
 const Icon = styled.img`
