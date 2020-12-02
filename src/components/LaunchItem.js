@@ -50,7 +50,7 @@ const RocketName = styled.span`
   font-weight: 700;
 `
 
-export const Item = ({ item }) => {
+export const LaunchItem = ({ item }) => {
   const { flight_number, mission_name, launch_date_utc, rocket } = item
 
   function convertDate (date_utc) {

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Item } from './Item'
+import { LaunchItem } from './LaunchItem'
 
 const Container = styled.div`
   display: flex;
@@ -11,11 +11,11 @@ const Container = styled.div`
   overflow: scroll;
 `
 
-export const List = ({ launches }) => {
+export const LaunchList = ({ launches }) => {
   return (
     <Container>
-      {launches.map(item => (
-        <Item key={item.flight_number} item={item} />
+      {launches.map((item, index) => (
+        <LaunchItem key={index} item={item} />
       ))}
     </Container>
   )

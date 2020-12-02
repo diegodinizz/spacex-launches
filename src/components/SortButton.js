@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
+import sort from '../assets/icon/sort@3x.png'
+
 const Container = styled.div`
-  width: auto;
   height: 1.5rem;
   background-color: #215184;
   color: white;
@@ -15,4 +16,15 @@ const Container = styled.div`
   align-items: center;
 `
 
-export const CustomButton = ({ children }) => <Container>{children}</Container>
+const Icon = styled.img`
+  width: 15px;
+  height: 15px;
+  padding: 10px;
+`
+
+export const SortButton = ({ children }) => (
+  <Container>
+    {children}
+    <Icon src={sort} alt='sort-icon' />
+  </Container>
+)

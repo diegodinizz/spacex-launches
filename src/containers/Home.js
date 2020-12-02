@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 import logo from '../assets/spacex-logo.png'
 import rocket from '../assets/img/launch-home.png'
-import select from '../assets/icon/select@3x.png'
-import sort from '../assets/icon/sort@3x.png'
 
 import { ReloadButton } from '../components/ReloadButton'
-import { List } from '../components/List'
+import { LaunchList } from '../components/LaunchList'
 import { Spinner } from '../components/Spinner'
-import { CustomButton } from '../components/CustomButton'
+import { SortButton } from '../components/SortButton'
+import { FilterButton } from '../components/FilterButton'
+import { FilterDropdown } from '../components/FilterDropdown'
 
 const Container = styled.div`
   display: flex;
@@ -46,22 +46,10 @@ const Title = styled.span`
   font-size: 1.2em;
 `
 
-const FilterContainer = styled.div`
+const FilterSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 10px 60px;
-`
-
-const FilterIcon = styled.img`
-  width: 8px;
-  height: 6px;
-  padding: 10px;
-`
-
-const SortIcon = styled.img`
-  width: 15px;
-  height: 15px;
-  padding: 10px;
 `
 
 const LaunchContainer = styled.div`
@@ -76,6 +64,7 @@ const Rocket = styled.img`
 export const Home = () => {
   const [launchesData, setLaunchesData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [renderFilter, setRenderFilter] = useState(false)
 
   useEffect(() => {
     const url = 'https://api.spacexdata.com/v3/launches'
@@ -94,8 +83,8 @@ export const Home = () => {
     getData()
   }, [isLoading])
 
-  function renderLaunchesList (data) {
-    return <List launches={data} />
+  function handleClick (event) {
+    setLaunchesData(launchesData.filter(item => item.launch_year === event))
   }
 
   return (
@@ -109,19 +98,18 @@ export const Home = () => {
           Reload Data
         </ReloadButton>
       </Header>
-      <FilterContainer>
-        <CustomButton>
+      <FilterSortContainer>
+        <FilterButton onClick={() => setRenderFilter(!renderFilter)}>
           Filter by Year
-          <FilterIcon src={select} alt='select-icon' />
-        </CustomButton>
-        <CustomButton>
-          Sort Descending
-          <SortIcon src={sort} alt='sort-icon' />
-        </CustomButton>
-      </FilterContainer>
+          {renderFilter ? (
+            <FilterDropdown onClick={handleClick} launches={launchesData} />
+          ) : null}
+        </FilterButton>
+        <SortButton>Sort Descending</SortButton>
+      </FilterSortContainer>
       <LaunchContainer>
         <Rocket src={rocket} alt='rocket' />
-        {isLoading ? Spinner() : renderLaunchesList(launchesData)}
+        {isLoading ? Spinner() : <LaunchList launches={launchesData} />}
       </LaunchContainer>
     </Container>
   )
