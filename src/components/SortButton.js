@@ -22,8 +22,8 @@ const Icon = styled.img`
   padding: 10px;
 `
 
-export const SortButton = ({ children }) => (
-  <Container>
+export const SortButton = ({ children, onClick }) => (
+  <Container onClick={onClick}>
     {children}
     <Icon src={sort} alt='sort-icon' />
   </Container>

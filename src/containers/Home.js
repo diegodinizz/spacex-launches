@@ -64,7 +64,8 @@ const Rocket = styled.img`
 export const Home = () => {
   const [launchesData, setLaunchesData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [renderFilter, setRenderFilter] = useState(false)
+  const [toggleDropdown, setToggleDropdown] = useState(false)
+  const [sortButton, setSortButton] = useState('Descending')
 
   useEffect(() => {
     const url = 'https://api.spacexdata.com/v3/launches'
@@ -83,8 +84,26 @@ export const Home = () => {
     getData()
   }, [isLoading])
 
-  function handleClick (event) {
+  function handleFilter (event) {
     setLaunchesData(launchesData.filter(item => item.launch_year === event))
+  }
+
+  function handleSort () {
+    if (sortButton === 'Descending') {
+      setLaunchesData(
+        launchesData.sort(
+          (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
+        )
+      )
+      setSortButton('Ascending')
+    } else {
+      setLaunchesData(
+        launchesData.sort(
+          (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
+        )
+      )
+      setSortButton('Descending')
+    }
   }
 
   return (
@@ -99,13 +118,16 @@ export const Home = () => {
         </ReloadButton>
       </Header>
       <FilterSortContainer>
-        <FilterButton onClick={() => setRenderFilter(!renderFilter)}>
+        <FilterButton onClick={() => setToggleDropdown(!toggleDropdown)}>
           Filter by Year
-          {renderFilter ? (
-            <FilterDropdown onClick={handleClick} launches={launchesData} />
+          {toggleDropdown ? (
+            <FilterDropdown
+              onClick={event => handleFilter(event)}
+              launches={launchesData}
+            />
           ) : null}
         </FilterButton>
-        <SortButton>Sort Descending</SortButton>
+        <SortButton onClick={() => handleSort()}>Sort {sortButton}</SortButton>
       </FilterSortContainer>
       <LaunchContainer>
         <Rocket src={rocket} alt='rocket' />
