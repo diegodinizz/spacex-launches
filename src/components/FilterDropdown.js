@@ -21,24 +21,9 @@ const Container = styled.ul`
 export const FilterDropdown = ({ launches, onClick }) => {
   return (
     <Container>
-      {launches
-        .reduce((acc, current) => {
-          const filtered = acc.find(
-            item => item.launch_year === current.launch_year
-          )
-          if (!filtered) {
-            return acc.concat([current])
-          } else {
-            return acc
-          }
-        }, [])
-        .map(({ launch_year }) => (
-          <FilterItem
-            key={launch_year}
-            year={launch_year}
-            onClick={() => onClick(launch_year)}
-          />
-        ))}
+      {launches.map((item, index) => (
+        <FilterItem key={index} year={item} onClick={() => onClick(item)} />
+      ))}
     </Container>
   )
 }

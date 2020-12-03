@@ -63,6 +63,7 @@ const Rocket = styled.img`
 
 export const Home = () => {
   const [launchesData, setLaunchesData] = useState([])
+  const [lauchYears, setLaunchYears] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [toggleDropdown, setToggleDropdown] = useState(false)
   const [sortButton, setSortButton] = useState('Descending')
@@ -70,11 +71,24 @@ export const Home = () => {
   useEffect(() => {
     const url = 'https://api.spacexdata.com/v3/launches'
 
+    function mapLaunchYears (data) {
+      const mapped = []
+
+      for (let index = 0; index < data.length; index++) {
+        mapped.push(data[index].launch_year)
+      }
+
+      return mapped.filter((item, index) => {
+        return mapped.indexOf(item) === index
+      })
+    }
+
     async function getData () {
       try {
         const response = await fetch(url)
         const data = await response.json()
         setLaunchesData(data)
+        setLaunchYears(mapLaunchYears(data))
         setIsLoading(false)
       } catch (error) {
         console.log(error.message)
@@ -106,6 +120,8 @@ export const Home = () => {
     }
   }
 
+  // console.log(launchesData)
+
   return (
     <Container>
       <Header>
@@ -123,7 +139,7 @@ export const Home = () => {
           {toggleDropdown ? (
             <FilterDropdown
               onClick={event => handleFilter(event)}
-              launches={launchesData}
+              launches={lauchYears}
             />
           ) : null}
         </FilterButton>
