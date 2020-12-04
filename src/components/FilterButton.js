@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+
+import { toggleFilterDropdown } from '../redux/filter/filter.actions'
 
 import select from '../assets/icon/select@3x.png'
 
@@ -24,9 +27,13 @@ const Icon = styled.img`
   padding: 0 10px;
 `
 
-export const FilterButton = ({ children, onClick }) => (
-  <Container onClick={onClick}>
-    {children}
-    <Icon src={select} alt='select-icon' />
-  </Container>
-)
+export const FilterButton = ({ children }) => {
+  const dispatch = useDispatch()
+
+  return (
+    <Container onClick={() => dispatch(toggleFilterDropdown())}>
+      {children}
+      <Icon src={select} alt='select-icon' />
+    </Container>
+  )
+}

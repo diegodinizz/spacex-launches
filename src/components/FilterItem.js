@@ -14,7 +14,6 @@ const Container = styled.li`
   }
 `
 
-export const FilterItem = ({ year, onClick }) => {
-
-  return <Container onClick={onClick}>{year}</Container>
-}
+export const FilterItem = ({ year, onClick }) => (
+  <Container onClick={onClick}>{year}</Container>
+)

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 import { LaunchItem } from './LaunchItem'
 
@@ -11,10 +12,14 @@ const Container = styled.div`
   overflow: scroll;
 `
 
-export const LaunchList = ({ launches }) => {
+export const LaunchList = () => {
+  const { launchesData } = useSelector(state => ({
+    launchesData: state.launches.launchesData
+  }))
+
   return (
     <Container>
-      {launches.map((item, index) => (
+      {launchesData.map((item, index) => (
         <LaunchItem key={index} item={item} />
       ))}
     </Container>

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { fetchLaunchesStartAsync } from '../redux/launches/launches.actions'
 
 import logo from '../assets/spacex-logo.png'
 import rocket from '../assets/img/launch-home.png'
@@ -62,65 +65,37 @@ const Rocket = styled.img`
 `
 
 export const Home = () => {
-  const [launchesData, setLaunchesData] = useState([])
-  const [lauchYears, setLaunchYears] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [toggleDropdown, setToggleDropdown] = useState(false)
   const [sortButton, setSortButton] = useState('Descending')
 
+  const { launchesData, isFetching, toggleDropdown } = useSelector(state => ({
+    launchesData: state.launches.launchesData,
+    isFetching: state.launches.isFetching,
+    toggleDropdown: state.filter.toggle
+  }))
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    const url = 'https://api.spacexdata.com/v3/launches'
-
-    function mapLaunchYears (data) {
-      const mapped = []
-
-      for (let index = 0; index < data.length; index++) {
-        mapped.push(data[index].launch_year)
-      }
-
-      return mapped.filter((item, index) => {
-        return mapped.indexOf(item) === index
-      })
-    }
-
-    async function getData () {
-      try {
-        const response = await fetch(url)
-        const data = await response.json()
-        setLaunchesData(data)
-        setLaunchYears(mapLaunchYears(data))
-        setIsLoading(false)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-
-    getData()
-  }, [isLoading])
+    dispatch(fetchLaunchesStartAsync())
+  }, [dispatch])
 
   function handleFilter (event) {
-    setLaunchesData(launchesData.filter(item => item.launch_year === event))
+    launchesData.filter(item => item.launch_year === event)
   }
 
-  function handleSort () {
+  function handleSort (data) {
     if (sortButton === 'Descending') {
-      setLaunchesData(
-        launchesData.sort(
-          (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
-        )
+      data.sort(
+        (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
       )
       setSortButton('Ascending')
     } else {
-      setLaunchesData(
-        launchesData.sort(
-          (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
-        )
+      data.sort(
+        (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
       )
       setSortButton('Descending')
     }
   }
-
-  // console.log(launchesData)
 
   return (
     <Container>
@@ -129,25 +104,22 @@ export const Home = () => {
           <Logo src={logo} alt='logo' />
           <Title>Launches</Title>
         </LogoContainer>
-        <ReloadButton onClick={() => setIsLoading(true)}>
-          Reload Data
-        </ReloadButton>
+        <ReloadButton>Reload Data</ReloadButton>
       </Header>
       <FilterSortContainer>
-        <FilterButton onClick={() => setToggleDropdown(!toggleDropdown)}>
+        <FilterButton>
           Filter by Year
           {toggleDropdown ? (
-            <FilterDropdown
-              onClick={event => handleFilter(event)}
-              launches={lauchYears}
-            />
+            <FilterDropdown onClick={event => handleFilter(event)} />
           ) : null}
         </FilterButton>
-        <SortButton onClick={() => handleSort()}>Sort {sortButton}</SortButton>
+        <SortButton onClick={() => handleSort(launchesData)}>
+          Sort {sortButton}
+        </SortButton>
       </FilterSortContainer>
       <LaunchContainer>
         <Rocket src={rocket} alt='rocket' />
-        {isLoading ? Spinner() : <LaunchList launches={launchesData} />}
+        {isFetching ? Spinner() : <LaunchList />}
       </LaunchContainer>
     </Container>
   )

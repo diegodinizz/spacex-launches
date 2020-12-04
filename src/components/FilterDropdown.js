@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 import { FilterItem } from './FilterItem'
 
@@ -18,10 +19,13 @@ const Container = styled.ul`
   -moz-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
 `
 
-export const FilterDropdown = ({ launches, onClick }) => {
+export const FilterDropdown = ({ onClick }) => {
+  const { yearsList } = useSelector(state => ({
+    yearsList: state.launches.yearsList
+  }))
   return (
     <Container>
-      {launches.map((item, index) => (
+      {yearsList.map((item, index) => (
         <FilterItem key={index} year={item} onClick={() => onClick(item)} />
       ))}
     </Container>

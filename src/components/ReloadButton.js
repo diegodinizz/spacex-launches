@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+
+import { fetchLaunchesStartAsync } from '../redux/launches/launches.actions'
 
 import refresh from '../assets/icon/refresh@3x.png'
 
@@ -25,9 +28,13 @@ const Icon = styled.img`
   padding: 0 10px;
 `
 
-export const ReloadButton = ({ children, onClick }) => (
-  <Container onClick={onClick}>
-    {children}
-    <Icon src={refresh} alt='refresh-icon' />
-  </Container>
-)
+export const ReloadButton = ({ children }) => {
+  const dispatch = useDispatch()
+
+  return (
+    <Container onClick={() => dispatch(fetchLaunchesStartAsync())}>
+      {children}
+      <Icon src={refresh} alt='refresh-icon' />
+    </Container>
+  )
+}
