@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { sortLaunches } from '../redux/launches/launches.actions'
-import { toggleSortButton } from '../redux/sort/sort.actions'
+import { sortLaunches } from '../../redux/launches/launches.actions'
+import { toggleSortButton } from '../../redux/sort/sort.actions'
 
-import sort from '../assets/icon/sort@3x.png'
+import sort from '../../assets/icon/sort@3x.png'
 
 const Container = styled.div`
   height: 1.5rem;

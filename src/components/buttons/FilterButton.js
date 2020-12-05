@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { toggleFilterDropdown } from '../redux/filter/filter.actions'
+import { toggleFilterDropdown } from '../../redux/filter/filter.actions'
 
-import select from '../assets/icon/select@3x.png'
+import select from '../../assets/icon/select@3x.png'
 
 const Container = styled.div`
   height: 1.5rem;

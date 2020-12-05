@@ -20,9 +20,7 @@ const Container = styled.ul`
 `
 
 export const FilterDropdown = () => {
-  const { yearsList } = useSelector(state => ({
-    yearsList: state.launches.yearsList
-  }))
+  const yearsList = useSelector(state => state.launches.yearsList)
 
   return (
     <Container>

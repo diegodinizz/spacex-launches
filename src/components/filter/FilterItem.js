@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { toggleSortButton } from '../redux/sort/sort.actions'
-import { fetchLaunchesByYearAsync } from '../redux/launches/launches.actions'
+import { toggleSortButton } from '../../redux/sort/sort.actions'
+import { fetchLaunchesByYearAsync } from '../../redux/launches/launches.actions'
 
 const Container = styled.li`
   font-size: 1.3em;

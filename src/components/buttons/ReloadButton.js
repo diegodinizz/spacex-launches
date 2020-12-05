@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
-import { fetchLaunchesStartAsync } from '../redux/launches/launches.actions'
+import { fetchLaunchesStartAsync } from '../../redux/launches/launches.actions'
 
-import refresh from '../assets/icon/refresh@3x.png'
+import refresh from '../../assets/icon/refresh@3x.png'
 
 const Container = styled.div`
   display: flex;
