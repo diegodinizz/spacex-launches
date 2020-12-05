@@ -1,6 +1,6 @@
 import { LaunchesActionTypes } from './launches.types'
 
-import { mapYears } from './launches.utils'
+import { mapLaunchesByYear } from './launches.utils'
 
 const INITIAL_STATE = {
   launchesData: null,
@@ -20,14 +20,18 @@ export const lauchesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        launchesData: action.payload,
-        yearsList: mapYears(action.payload)
+        launchesData: action.payload
       }
     case LaunchesActionTypes.FETCH_LAUNCHES_FAILURE:
       return {
         ...state,
         isFetching: false,
         errorMessage: action.payload
+      }
+    case LaunchesActionTypes.FILTER_LAUNCHES_BY_YEAR:
+      return {
+        ...state,
+        yearsList: mapLaunchesByYear(action.payload)
       }
     default:
       return state

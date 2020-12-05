@@ -1,7 +1,7 @@
 import { FilterActionTypes } from './filter.types'
 
 const INITIAL_STATE = {
-  toggle: false
+  hidden: true
 }
 
 export const filterReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ export const filterReducer = (state = INITIAL_STATE, action) => {
     case FilterActionTypes.TOGGLE_FILTER_DROPDOWN:
       return {
         ...state,
-        toggle: !state.toggle
+        hidden: !state.hidden
       }
     default:
       return state

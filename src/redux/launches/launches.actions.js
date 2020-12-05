@@ -16,6 +16,11 @@ export const fetchLaunchesFailure = errorMessage => ({
   payload: errorMessage
 })
 
+export const filterLaunchesByYear = launches => ({
+  type: LaunchesActionTypes.FILTER_LAUNCHES_BY_YEAR,
+  payload: launches
+})
+
 export const fetchLaunchesStartAsync = () => {
   return async dispatch => {
     dispatch(fetchLaunchesStart())
@@ -24,6 +29,7 @@ export const fetchLaunchesStartAsync = () => {
       const response = await fetch('https://api.spacexdata.com/v3/launches')
       const data = await handleErrors(response)
       dispatch(fetchLaunchesSuccess(data))
+      dispatch(filterLaunchesByYear(data))
     } catch (error) {
       return dispatch(fetchLaunchesFailure(error.message))
     }

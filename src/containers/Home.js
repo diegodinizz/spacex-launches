@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 import {
   fetchLaunchesStartAsync,
   fetchLaunchesByYearAsync
 } from '../redux/launches/launches.actions'
+import { toggleSortButton } from '../redux/sort/sort.actions'
 
 import logo from '../assets/spacex-logo.png'
 import rocket from '../assets/img/launch-home.png'
@@ -68,35 +69,38 @@ const Rocket = styled.img`
 `
 
 export const Home = () => {
-  const [sortButton, setSortButton] = useState('Descending')
-
-  const { launchesData, isFetching, toggleDropdown } = useSelector(state => ({
+  const {
+    launchesData,
+    isFetching,
+    toggleFilterDropdown,
+    sortButton
+  } = useSelector(state => ({
     launchesData: state.launches.launchesData,
     isFetching: state.launches.isFetching,
-    toggleDropdown: state.filter.toggle
+    toggleFilterDropdown: state.filter.hidden,
+    sortButton: state.sort.name
   }))
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchLaunchesStartAsync())
+    dispatch(toggleSortButton('Descending'))
   }, [dispatch])
 
-  // function handleFilter (event) {
-  //   launchesData.filter(item => item.launch_year === event)
-  // }
-
   function handleSort (data) {
-    if (sortButton === 'Descending') {
+    if (data.length <= 1) {
+      return
+    } else if (sortButton === 'Descending') {
       data.sort(
         (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
       )
-      setSortButton('Ascending')
+      dispatch(toggleSortButton('Ascending'))
     } else {
       data.sort(
         (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
       )
-      setSortButton('Descending')
+      dispatch(toggleSortButton('Descending'))
     }
   }
 
@@ -112,7 +116,7 @@ export const Home = () => {
       <FilterSortContainer>
         <FilterButton>
           Filter by Year
-          {toggleDropdown ? (
+          {!toggleFilterDropdown ? (
             <FilterDropdown
               onClick={event => dispatch(fetchLaunchesByYearAsync(event))}
             />
