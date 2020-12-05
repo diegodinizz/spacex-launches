@@ -29,3 +29,19 @@ export const fetchLaunchesStartAsync = () => {
     }
   }
 }
+
+export const fetchLaunchesByYearAsync = year => {
+  return async dispatch => {
+    dispatch(fetchLaunchesStart())
+
+    try {
+      const response = await fetch(
+        `https://api.spacexdata.com/v3/launches?launch_year=${year}`
+      )
+      const data = await handleErrors(response)
+      dispatch(fetchLaunchesSuccess(data))
+    } catch (error) {
+      return dispatch(fetchLaunchesFailure(error.message))
+    }
+  }
+}

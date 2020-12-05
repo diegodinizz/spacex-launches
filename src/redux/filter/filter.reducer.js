@@ -1,9 +1,7 @@
 import { FilterActionTypes } from './filter.types'
 
 const INITIAL_STATE = {
-  toggle: false,
-  filterData: null,
-  filterItems: []
+  toggle: false
 }
 
 export const filterReducer = (state = INITIAL_STATE, action) => {
@@ -12,13 +10,6 @@ export const filterReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         toggle: !state.toggle
-      }
-    case FilterActionTypes.FILTER_ITEM:
-      return {
-        ...state,
-        filterItems: state.filterItems.filter(
-          filterItem => filterItem.id !== action.payload.id
-        )
       }
     default:
       return state

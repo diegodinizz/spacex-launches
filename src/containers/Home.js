@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchLaunchesStartAsync } from '../redux/launches/launches.actions'
+import {
+  fetchLaunchesStartAsync,
+  fetchLaunchesByYearAsync
+} from '../redux/launches/launches.actions'
 
 import logo from '../assets/spacex-logo.png'
 import rocket from '../assets/img/launch-home.png'
@@ -79,9 +82,9 @@ export const Home = () => {
     dispatch(fetchLaunchesStartAsync())
   }, [dispatch])
 
-  function handleFilter (event) {
-    launchesData.filter(item => item.launch_year === event)
-  }
+  // function handleFilter (event) {
+  //   launchesData.filter(item => item.launch_year === event)
+  // }
 
   function handleSort (data) {
     if (sortButton === 'Descending') {
@@ -110,7 +113,9 @@ export const Home = () => {
         <FilterButton>
           Filter by Year
           {toggleDropdown ? (
-            <FilterDropdown onClick={event => handleFilter(event)} />
+            <FilterDropdown
+              onClick={event => dispatch(fetchLaunchesByYearAsync(event))}
+            />
           ) : null}
         </FilterButton>
         <SortButton onClick={() => handleSort(launchesData)}>
