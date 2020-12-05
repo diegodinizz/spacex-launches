@@ -21,6 +21,10 @@ export const filterLaunchesByYear = launches => ({
   payload: launches
 })
 
+export const sortLaunches = () => ({
+  type: LaunchesActionTypes.SORT_LAUNCHES
+})
+
 export const fetchLaunchesStartAsync = () => {
   return async dispatch => {
     dispatch(fetchLaunchesStart())

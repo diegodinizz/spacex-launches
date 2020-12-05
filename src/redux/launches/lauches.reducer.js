@@ -33,6 +33,11 @@ export const lauchesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         yearsList: mapLaunchesByYear(action.payload)
       }
+    case LaunchesActionTypes.SORT_LAUNCHES:
+      return {
+        ...state,
+        launchesData: state.launchesData.reverse()
+      }
     default:
       return state
   }

@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-import {
-  fetchLaunchesStartAsync,
-  fetchLaunchesByYearAsync
-} from '../redux/launches/launches.actions'
+import { fetchLaunchesStartAsync } from '../redux/launches/launches.actions'
 import { toggleSortButton } from '../redux/sort/sort.actions'
 
 import logo from '../assets/spacex-logo.png'
@@ -69,17 +66,13 @@ const Rocket = styled.img`
 `
 
 export const Home = () => {
-  const {
-    launchesData,
-    isFetching,
-    toggleFilterDropdown,
-    sortButton
-  } = useSelector(state => ({
-    launchesData: state.launches.launchesData,
-    isFetching: state.launches.isFetching,
-    toggleFilterDropdown: state.filter.hidden,
-    sortButton: state.sort.name
-  }))
+  const { isFetching, toggleFilterDropdown, sortButton } = useSelector(
+    state => ({
+      isFetching: state.launches.isFetching,
+      toggleFilterDropdown: state.filter.hidden,
+      sortButton: state.sort.name
+    })
+  )
 
   const dispatch = useDispatch()
 
@@ -87,22 +80,6 @@ export const Home = () => {
     dispatch(fetchLaunchesStartAsync())
     dispatch(toggleSortButton('Descending'))
   }, [dispatch])
-
-  function handleSort (data) {
-    if (data.length <= 1) {
-      return
-    } else if (sortButton === 'Descending') {
-      data.sort(
-        (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
-      )
-      dispatch(toggleSortButton('Ascending'))
-    } else {
-      data.sort(
-        (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
-      )
-      dispatch(toggleSortButton('Descending'))
-    }
-  }
 
   return (
     <Container>
@@ -116,15 +93,9 @@ export const Home = () => {
       <FilterSortContainer>
         <FilterButton>
           Filter by Year
-          {!toggleFilterDropdown ? (
-            <FilterDropdown
-              onClick={event => dispatch(fetchLaunchesByYearAsync(event))}
-            />
-          ) : null}
+          {!toggleFilterDropdown ? <FilterDropdown /> : null}
         </FilterButton>
-        <SortButton onClick={() => handleSort(launchesData)}>
-          Sort {sortButton}
-        </SortButton>
+        <SortButton>Sort {sortButton}</SortButton>
       </FilterSortContainer>
       <LaunchContainer>
         <Rocket src={rocket} alt='rocket' />

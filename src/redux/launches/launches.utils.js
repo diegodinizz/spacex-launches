@@ -14,21 +14,3 @@ export const mapLaunchesByYear = data => {
 
   return mapped.filter((item, index) => mapped.indexOf(item) === index)
 }
-
-// function handleSort (data) {
-//   if (data.length <= 1) {
-//     return
-//   } else if (!sortButtonToggle) {
-//     data.sort(
-//       (a, b) => parseFloat(b.flight_number) - parseFloat(a.flight_number)
-//     )
-//     setSortButton('Ascending')
-//     dispatch(toggleSortButton())
-//   } else {
-//     data.sort(
-//       (a, b) => parseFloat(a.flight_number) - parseFloat(b.flight_number)
-//     )
-//     setSortButton('Descending')
-//     dispatch(toggleSortButton())
-//   }
-// }

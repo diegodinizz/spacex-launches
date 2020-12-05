@@ -19,14 +19,15 @@ const Container = styled.ul`
   -moz-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
 `
 
-export const FilterDropdown = ({ onClick }) => {
+export const FilterDropdown = () => {
   const { yearsList } = useSelector(state => ({
     yearsList: state.launches.yearsList
   }))
+
   return (
     <Container>
       {yearsList.map((item, index) => (
-        <FilterItem key={index} year={item} onClick={() => onClick(item)} />
+        <FilterItem key={index} year={item} />
       ))}
     </Container>
   )

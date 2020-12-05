@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+
+import { toggleSortButton } from '../redux/sort/sort.actions'
+import { fetchLaunchesByYearAsync } from '../redux/launches/launches.actions'
 
 const Container = styled.li`
   font-size: 1.3em;
@@ -14,6 +18,17 @@ const Container = styled.li`
   }
 `
 
-export const FilterItem = ({ year, onClick }) => (
-  <Container onClick={onClick}>{year}</Container>
-)
+export const FilterItem = ({ year }) => {
+  const dispatch = useDispatch()
+
+  return (
+    <Container
+      onClick={() => {
+        dispatch(fetchLaunchesByYearAsync(year))
+        dispatch(toggleSortButton('Descending'))
+      }}
+    >
+      {year}
+    </Container>
+  )
+}
