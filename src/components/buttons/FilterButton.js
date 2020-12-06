@@ -19,6 +19,11 @@ const Container = styled.div`
   align-items: center;
   outline: none;
   position: relative;
+
+  @media (max-width: 1500px) {
+    width: 35%;
+    margin: 0;
+  }
 `
 
 const Icon = styled.img`

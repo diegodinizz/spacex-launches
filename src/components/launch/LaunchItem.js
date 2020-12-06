@@ -15,6 +15,11 @@ const Container = styled.div`
   box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
   -webkit-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
   -moz-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
+
+  @media (max-width: 1500px) {
+    width: 92%;
+    height: 50px;
+  }
 `
 
 const FlightContainer = styled.div`
@@ -27,27 +32,48 @@ const FlightContainer = styled.div`
 const FlightNumber = styled.span`
   font-size: 2.3em;
   margin-right: 50px;
+
+  @media (max-width: 1500px) {
+    font-size: 1.5em;
+    margin-right: 1rem;
+  }
 `
 
 const MissionName = styled.span`
   font-size: 2em;
+
+  @media (max-width: 1500px) {
+    font-size: 1.3em;
+  }
 `
 
 const LaunchDateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  @media (max-width: 1500px) {
+    width: 30%;
+  }
 `
 
 const LaunchDate = styled.span`
   font-size: 1em;
   font-weight: 300;
   margin-bottom: 15px;
+
+  @media (max-width: 1500px) {
+    font-size: 0.8em;
+  }
 `
 
 const RocketName = styled.span`
   font-size: 1.2em;
   font-weight: 700;
+
+  @media (max-width: 1500px) {
+    font-size: 1em;
+  }
 `
 
 export const LaunchItem = ({ item }) => {

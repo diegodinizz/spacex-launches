@@ -20,12 +20,25 @@ const Container = styled.div`
   font-weight: 700;
   color: white;
   padding: 10px 15px;
+
+  @media (max-width: 1500px) {
+    width: 4.5rem;
+    height: 0.7rem;
+    font-size: 0.5em;
+    justify-content: space-between;
+  }
 `
 
 const Icon = styled.img`
   width: 13px;
   height: 13px;
   padding: 0 10px;
+
+  @media (max-width: 1500px) {
+    width: 10px;
+    height: 10px;
+    padding: 0 5px;
+  }
 `
 
 export const ReloadButton = ({ children }) => {

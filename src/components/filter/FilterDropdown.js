@@ -17,6 +17,10 @@ const Container = styled.ul`
   box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
   -webkit-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
   -moz-box-shadow: 0px 3px 5px 2px rgba(220, 220, 220, 1);
+
+  @media (max-width: 1500px) {
+    width: 100%;
+  }
 `
 
 export const FilterDropdown = () => {

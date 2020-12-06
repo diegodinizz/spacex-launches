@@ -9,6 +9,11 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 10px 60px;
+
+  @media (max-width: 1500px) {
+    justify-content: space-between;
+    margin: 10px;
+  }
 `
 
 export const FilterAndSort = () => {

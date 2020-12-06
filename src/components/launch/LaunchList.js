@@ -10,6 +10,11 @@ const Container = styled.div`
   width: 50%;
   height: 700px;
   overflow: scroll;
+
+  @media (max-width: 1500px) {
+    width: 100%;
+    margin: 0;
+  }
 `
 
 export const LaunchList = () => {

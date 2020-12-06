@@ -19,6 +19,12 @@ const Container = styled.div`
   box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.5);
   -webkit-box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.5);
   -moz-box-shadow: 0px 0px 5px 0px rgba(153, 153, 153, 0.5);
+
+  @media (max-width: 1500px) {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+  }
 `
 
 export const Home = () => {
