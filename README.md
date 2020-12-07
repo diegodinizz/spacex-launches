@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+## SpaceX Launches
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://diegodinizz.github.io/spacex-launches/
 
-## Available Scripts
+The SpaceX Launches is an application built with React, Redux, Styled Components, Moment.js and hosted on GitHub Pages. The application must retrieve historic and future SpaceX launches and present them in a list view.
 
-In the project directory, you can run:
+![Screenshot 2020-12-07 at 00 12 14](https://user-images.githubusercontent.com/47988806/101297779-9e407500-3822-11eb-86f9-be61fc285325.png)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.
+
+#### Installation:
+
+`npm install`
+
+#### Start Server:
+
+`npm start`
+
+Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+#### Production:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm run deploy`
 
-### `npm run build`
+It correctly bundles React in production mode and optimizes the build to be deployed on Gh Pages.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Framework used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), [Redux](https://github.com/reduxjs/react-redux), [Styled Components](https://github.com/styled-components/styled-components) and [Moment.js](https://github.com/moment/moment/). 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Reference
 
-### `npm run eject`
+GET - [SpaceX REST API](https://api.spacexdata.com/v3/launches). Open Source REST API for rocket, core, capsule, pad, and launch data.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Hosted
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project is hosted on [Gh Pages](https://pages.github.com) at https://diegodinizz.github.io/spacex-launches/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Reflection
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This was a week-long project built as a short technical exercise. Project goal included is to create a React application that will consume data from the SpaceX public API.  
 
-## Learn More
+Originally I wanted to build an application that allowed users to see the SpaceX launches historic and future in a list view. I started this process by using the `create-react-app` boilerplate, then adding `Redux` to manage the state flow in the App, `styled-components` to write actual CSS code to style the components, and lastly `Moment.js` to manipulating, and formatting dates.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+One of the main challenges I ran into was to pull the information from the API. This leads me to spend a few hours planning a better way to display the information coming from the API. Due to project time constraints, I had to decide a simplified design to demonstrate a better visualisation of the pieces of information that I had available.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+At the end of the day, the technologies implemented in this project are React, Redux, Styled Components, Moment.js, and Gh Pages to deploy it. I choose to use as fewer frameworks as possible to minimize initial setup and invest more time in diving into weird technological rabbit holes. In the next iteration with more time, I would like to implement a more detail visualisation of the launches, type safety method and possibly unit tests.
