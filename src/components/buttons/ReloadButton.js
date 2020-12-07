@@ -22,9 +22,9 @@ const Container = styled.div`
   padding: 10px 15px;
 
   @media (max-width: 1500px) {
-    width: 4.5rem;
-    height: 0.7rem;
-    font-size: 0.5em;
+    width: 6rem;
+    height: 1rem;
+    font-size: 0.7em;
     justify-content: space-between;
   }
 `
@@ -35,8 +35,6 @@ const Icon = styled.img`
   padding: 0 10px;
 
   @media (max-width: 1500px) {
-    width: 10px;
-    height: 10px;
     padding: 0 5px;
   }
 `

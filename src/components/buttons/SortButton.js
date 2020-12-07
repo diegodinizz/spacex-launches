@@ -20,7 +20,7 @@ const Container = styled.div`
   align-items: center;
 
   @media (max-width: 1500px) {
-    width: 35%;
+    max-width: 35%;
     margin: 0;
   }
 `
