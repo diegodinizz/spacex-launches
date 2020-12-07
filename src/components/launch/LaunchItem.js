@@ -3,6 +3,7 @@ import moment from 'moment'
 
 const Container = styled.div`
   display: flex;
+  flex-shrink: 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
